@@ -17,7 +17,7 @@
 	<!-- <div class="background" :style="`background-image: url('img/${arrImages[activeIndex].image}')`"> -->
 		<div class="container-blur">
 			<div class="contents">
-				<div class="slider">
+				<div class="slider" @mouseenter="pauseAutoplay" @mouseleave="resumeAutoplay">
 					<div class="slider-viewer">
 						<div class="controls">
 							<button class="btn-left" @click="changeSlide(-1)">&lt;</button>
@@ -46,8 +46,8 @@
 				</div>
 
 				<div class="btns">
-					<!-- <button class="btn-start-stop" @click="controlAutoplay">{{ isAutoplayActive ? 'STOP' : 'START' }}</button> -->
-					<button class="btn-start-stop" @click="isAutoplayActive ? stopAutoplay() : startAutoplay()">{{ isAutoplayActive ? 'STOP' : 'START' }}</button>
+					<button class="btn-start-stop" @click="controlAutoplay">{{ isAutoplayActive ? 'STOP' : 'START' }}</button>
+					<!-- <button class="btn-start-stop" @click="isAutoplayActive ? stopAutoplay() : startAutoplay()">{{ isAutoplayActive ? 'STOP' : 'START' }}</button> -->
 					<button class="btn-invert" @click="invertAutoplay">Invert</button>
 				</div>
 			</div>

@@ -1,6 +1,11 @@
 new Vue({
 	el: '.background',
 	data: {
+		timeSlider: 1.5 * 1000,
+		direction: 1,
+		activeIndex: 0,
+		idInterval: 0,
+		isAutoplayActive: true,
 		arrImages: [
 			{
 				image: '01.webp',
@@ -28,12 +33,6 @@ new Vue({
 				text: "Marvel's Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.",
 			},
 		],
-
-		timeSlider: 1.5 * 1000,
-		direction: 1,
-		activeIndex: 0,
-		idInterval: 0,
-		isAutoplayActive: false,
 	},
 	methods: {
 		changeSlide(direction) {
@@ -55,26 +54,37 @@ new Vue({
 		controlAutoplay() {
 			if (this.isAutoplayActive) {
 				this.stopAutoplay();
+				this.isAutoplayActive = false;
 			} else {
-				this.startAutoplay()
+				this.startAutoplay();
+				this.isAutoplayActive = true;
 			}
 		},
 		stopAutoplay() {
 			clearInterval(this.idInterval);
-			this.isAutoplayActive = false;
 		},
 		startAutoplay() {
 			this.idInterval = setInterval(() => this.changeSlide(this.direction), this.timeSlider);
-			this.isAutoplayActive = true;
 		},
 		invertAutoplay() {
 			this.direction *= -1;
+		},
+		pauseAutoplay() {
+			this.stopAutoplay();
+		},
+		resumeAutoplay() {
+			if (this.isAutoplayActive) {
+				this.startAutoplay();
+			}
 		}
-	}
+	},
+	mounted() {
+		this.startAutoplay();
+	},
 });
 
 
-/*
+/* come funziona il ternario
 const myVar2 = condizione ? operazioni_se_condizione_vera : operazioni_se_condizione_falsa
 
 if (condizione) {
@@ -83,8 +93,3 @@ if (condizione) {
 	operazioni_se_condizione_falsa
 }
 */
-
-
-function moveSlide(direction) {
-	sffasfsfd
-}

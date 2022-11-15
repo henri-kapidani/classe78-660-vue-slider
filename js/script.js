@@ -70,16 +70,18 @@ new Vue({
 			this.direction *= -1;
 		},
 		pauseAutoplay() {
+			console.log('mouseenter');
 			this.stopAutoplay();
 		},
 		resumeAutoplay() {
+			console.log('mouseleave');
 			if (this.isAutoplayActive) {
 				this.startAutoplay();
 			}
 		}
 	},
 	mounted() {
-		this.startAutoplay();
+		this.isAutoplayActive ? this.startAutoplay() : '';
 	},
 });
 
